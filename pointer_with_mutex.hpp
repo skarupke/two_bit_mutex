@@ -41,7 +41,7 @@ struct pointer_with_mutex
 		static_assert(std::alignment_of<T>::value >= 4);
 		uint64_t as_int = reinterpret_cast<uint64_t>(ptr);
 		uint64_t old = pointer.load(std::memory_order_relaxed);
-		while (pointer.compare_exchange_weak(old, (old & both_bits) | as_int, std::memory_order_relaxed))
+		while (!pointer.compare_exchange_weak(old, (old & both_bits) | as_int, std::memory_order_relaxed))
 		{
 		}
 	}
