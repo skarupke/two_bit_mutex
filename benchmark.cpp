@@ -38,8 +38,8 @@ void lock_in_loop(Mutex & mutex, AssertingMutex & asserter, int count)
 	for (int i = 0; i < count; ++i)
 	{
 		mutex.lock();
-		asserter.lock();
-		asserter.unlock();
+		//asserter.lock();
+		//asserter.unlock();
 		mutex.unlock();
 	}
 }
